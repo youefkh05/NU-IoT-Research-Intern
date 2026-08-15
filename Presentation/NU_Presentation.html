@@ -85,7 +85,514 @@
       transition: background .4s ease, color .4s ease;
     }
 
+    /* ---------- Circuits/Electronics ---------- */
+
+
+    .led {
+
+      fill: #222;
+
+      transition: .5s;
+
+    }
+
+    .on .led {
+
+      fill: #ffe44a;
+
+      filter: drop-shadow(0 0 20px #ffd400);
+    }
+
+    .electron {
+
+      offset-path: path("M40 40 L120 40 ...");
+
+      animation: flow 2s linear infinite;
+
+    }
+
+    /*=========================================================
+        Raspberry Pi Methodology Tree
+=========================================================*/
+
+    .method-tree {
+
+      position: relative;
+
+      margin-top: 2rem;
+
+      height: 720px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: flex-start;
+
+    }
+
+
+    /*================ ROOT =================*/
+
+    .method-root {
+
+      position: relative;
+
+      z-index: 5;
+
+      animation: rootEnter .8s cubic-bezier(.18, .89, .32, 1.28);
+
+    }
+
+    .root-card {
+
+      width: 300px;
+
+      background: rgba(255, 255, 255, .05);
+
+      border: 1px solid rgba(255, 255, 255, .12);
+
+      border-radius: 20px;
+
+      padding: 18px;
+
+      backdrop-filter: blur(14px);
+
+      box-shadow:
+
+        0 20px 60px rgba(0, 0, 0, .35),
+
+        0 0 25px rgba(18, 200, 255, .18);
+
+      transition: .5s;
+
+    }
+
+    .root-card img {
+
+      width: 100%;
+
+      border-radius: 12px;
+
+      display: block;
+
+    }
+
+    .root-card h3 {
+
+      text-align: center;
+
+      margin-top: 12px;
+
+      font-size: 1.05rem;
+
+      color: var(--teal);
+
+    }
+
+
+    /*================ TREE =================*/
+
+    .tree-svg {
+
+      position: absolute;
+
+      left: 0;
+
+      top: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      pointer-events: none;
+
+      overflow: visible;
+
+    }
+
+
+    /*================ BRANCHES =================*/
+
+    .branch {
+
+      fill: none;
+
+      stroke: rgba(0, 255, 255, .25);
+
+      stroke-width: 4;
+
+      stroke-linecap: round;
+
+      stroke-dasharray: 900;
+
+      stroke-dashoffset: 900;
+
+      animation: growBranch .9s forwards;
+
+    }
+
+
+    /*================ PULSE =================*/
+
+    #pulse {
+
+      fill: var(--teal);
+
+      filter:
+
+        drop-shadow(0 0 6px cyan) drop-shadow(0 0 18px cyan);
+
+      opacity: 0;
+
+    }
+
+
+    /*================ METHODS =================*/
+
+    .method-row {
+
+      position: absolute;
+
+      bottom: 20px;
+
+      width: 100%;
+
+      display: flex;
+
+      justify-content: space-around;
+
+      align-items: flex-start;
+
+      z-index: 5;
+
+    }
+
+
+    .method-card {
+
+      width: 290px;
+
+      padding: 15px;
+
+      border-radius: 18px;
+
+      background: rgba(255, 255, 255, .05);
+
+      border: 1px solid rgba(255, 255, 255, .10);
+
+      backdrop-filter: blur(12px);
+
+      box-shadow:
+
+        0 12px 40px rgba(0, 0, 0, .25);
+
+      transition:
+
+        transform .7s,
+
+        opacity .6s,
+
+        box-shadow .7s;
+
+      transform-origin: center;
+
+      overflow: hidden;
+
+    }
+
+
+    .method-card:hover {
+
+      transform: translateY(-6px);
+
+    }
+
+
+    .method-title {
+
+      font-size: 1.15rem;
+
+      font-weight: 700;
+
+      text-align: center;
+
+      color: var(--teal);
+
+      margin-bottom: 12px;
+
+    }
+
+
+    .method-card video {
+
+      width: 100%;
+
+      border-radius: 12px;
+
+      display: block;
+
+      background: #111;
+
+      border: 2px solid rgba(255, 255, 255, .08);
+
+    }
+
+
+    .method-desc {
+
+      margin-top: 12px;
+
+      font-size: .92rem;
+
+      line-height: 1.5;
+
+      color: var(--muted);
+
+    }
+
+
+    /*================ ACTIVE CARD =================*/
+
+    .method-card.active {
+
+      transform:
+
+        translateY(-130px) scale(1.65);
+
+      z-index: 40;
+
+      box-shadow:
+
+        0 25px 80px rgba(0, 0, 0, .55),
+
+        0 0 35px rgba(0, 255, 255, .30);
+
+    }
+
+
+    /*================ DIMMED =================*/
+
+    .method-card.dim {
+
+      opacity: .15;
+
+      transform: scale(.92);
+
+    }
+
+
+    /*================ ROOT ACTIVE =================*/
+
+    .root-card.active {
+
+      transform: scale(1.25);
+
+      box-shadow:
+
+        0 0 35px rgba(0, 255, 255, .35),
+
+        0 25px 80px rgba(0, 0, 0, .45);
+
+    }
+
+
+    /*================ GLOW =================*/
+
+    .method-card::before {
+
+      content: "";
+
+      position: absolute;
+
+      left: -120%;
+
+      top: 0;
+
+      width: 70%;
+
+      height: 100%;
+
+      background:
+
+        linear-gradient(90deg,
+
+          transparent,
+
+          rgba(255, 255, 255, .18),
+
+          transparent);
+
+      transition: 1.2s;
+
+    }
+
+
+    .method-card.active::before {
+
+      left: 170%;
+
+    }
+
+
+    /*================ ROOT POP =================*/
+
+    @keyframes rootEnter {
+
+      0% {
+
+        opacity: 0;
+
+        transform: scale(.2);
+
+      }
+
+      70% {
+
+        transform: scale(1.12);
+
+      }
+
+      100% {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+      }
+
+    }
+
+
+    /*================ BRANCH GROW =================*/
+
+    @keyframes growBranch {
+
+      to {
+
+        stroke-dashoffset: 0;
+
+      }
+
+    }
+
+
+    /*================ PULSE =================*/
+
+    @keyframes pulseGlow {
+
+      0% {
+
+        transform: scale(.6);
+
+        opacity: 0;
+
+      }
+
+      20% {
+
+        opacity: 1;
+
+      }
+
+      80% {
+
+        opacity: 1;
+
+      }
+
+      100% {
+
+        transform: scale(1.2);
+
+        opacity: 0;
+
+      }
+
+    }
+
+
+    /*================ VIDEO =================*/
+
+    .method-card video {
+
+      transition: .5s;
+
+    }
+
+    .method-card.active video {
+
+      box-shadow:
+
+        0 0 18px rgba(0, 255, 255, .25);
+
+    }
+
+
+    /*================ SMALL FLOAT =================*/
+
+    @keyframes floatCard {
+
+      0% {
+
+        transform: translateY(0);
+
+      }
+
+      50% {
+
+        transform: translateY(-5px);
+
+      }
+
+      100% {
+
+        transform: translateY(0);
+
+      }
+
+    }
+
+    .method-card:not(.active) {
+
+      animation: floatCard 5s ease-in-out infinite;
+
+    }
+
+
+    /* ---------- Camera / Cards ---------- */
+
+    .method-card {
+
+      transition:
+        transform .7s,
+        opacity .5s;
+
+    }
+
+    .method-card.focus {
+
+      transform: scale(2.2);
+
+      z-index: 50;
+
+    }
+
+    .method-card.blur {
+
+      opacity: .15;
+
+      transform: scale(.8);
+
+    }
+
+
+
     /* ---------- deck / slides ---------- */
+
+
     .deck {
       position: fixed;
       inset: 0;
@@ -144,30 +651,6 @@
       background: var(--teal);
       border-radius: 2px;
     }
-
-    .led {
-
-      fill: #222;
-
-      transition: .5s;
-
-    }
-
-    .on .led {
-
-      fill: #ffe44a;
-
-      filter: drop-shadow(0 0 20px #ffd400);
-    }
-
-    .electron {
-
-      offset-path: path("M40 40 L120 40 ...");
-
-      animation: flow 2s linear infinite;
-
-    }
-
 
     h1 {
       font-size: clamp(2rem, 4.6vw, 4rem);
@@ -5030,7 +5513,7 @@
 
 
     <!-- 2 ─ INTRODUCTION -->
-    <section class="slide" data-pages="2–3">
+    <section class="slide">
       <div class="slide-inner">
 
         <span class="kicker">Introduction</span>
@@ -5082,7 +5565,7 @@
 
 
     <!-- 3 ─ RESEARCH JOURNEY -->
-    <section class="slide" data-pages="3–5">
+    <section class="slide">
 
       <div class="slide-inner">
 
@@ -5359,6 +5842,163 @@
             A digital input from the push button is continuously monitored by the
             Raspberry Pi. Based on its state, the program updates the GPIO output,
             causing the LED to turn <strong>ON</strong> or <strong>OFF</strong>.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+ Raspberry Pi Task 1 ─ Methodology
+=========================================================== -->
+    <section class="slide">
+      <div class="slide-inner">
+
+        <span class="kicker">Raspberry Pi Development</span>
+
+        <h2>
+          Three Software Approaches
+          <span class="step-hint">click to build ▸</span>
+        </h2>
+
+        <p class="lead">
+          The same hardware can be controlled using three different software techniques.
+        </p>
+
+        <div class="method-tree click-advance">
+
+          <!-- ================= ROOT ================= -->
+
+          <div class="method-root gstep">
+
+            <div class="root-card">
+
+              <img src="../Tasks/Task3/T3_Button.jpeg">
+
+              <h3>LED + Push Button Circuit</h3>
+
+            </div>
+
+          </div>
+
+
+          <!-- ================= SVG ================= -->
+
+          <svg class="tree-svg" viewBox="0 0 1200 420">
+
+            <!-- branches -->
+
+            <path id="delayPath" d="M600 60 L300 220" class="branch" />
+
+            <path id="timerPath" d="M600 60 L600 220" class="branch" />
+
+            <path id="interruptPath" d="M600 60 L900 220" class="branch" />
+
+            <!-- glowing pulse -->
+
+            <circle id="pulse" r="8" cx="600" cy="60" />
+
+          </svg>
+
+
+          <!-- ================= METHODS ================= -->
+
+          <div class="method-row">
+
+
+            <!-- Delay -->
+
+            <div class="method-card gstep" id="delayCard">
+
+              <div class="method-title">
+
+                Delay-Based
+
+              </div>
+
+              <video id="delayVideo" muted preload="metadata">
+
+                <source src="../Videos/Task2_LED.mp4" type="video/mp4">
+
+              </video>
+
+              <div class="method-desc">
+
+                Uses software delay loops to periodically
+                toggle the LED.
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Timer -->
+
+            <div class="method-card gstep" id="timerCard">
+
+              <div class="method-title">
+
+                Timer-Based
+
+              </div>
+
+              <video id="timerVideo" muted preload="metadata">
+
+                <source src="../Videos/Task3_Button.mp4" type="video/mp4">
+
+              </video>
+
+              <div class="method-desc">
+
+                Uses hardware timers to generate precise
+                blinking intervals.
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Interrupt -->
+
+            <div class="method-card gstep" id="interruptCard">
+
+              <div class="method-title">
+
+                Interrupt-Based
+
+              </div>
+
+              <video id="interruptVideo" muted preload="metadata">
+
+                <source src="../Videos/Task4_INTR.mp4" type="video/mp4">
+
+              </video>
+
+              <div class="method-desc">
+
+                Reacts immediately to button presses using
+                GPIO interrupts.
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="takeaway gstep">
+
+          <span class="lbl">Observation</span>
+
+          <p>
+
+            Although the hardware remains identical, changing the software architecture
+            significantly affects timing accuracy, CPU utilization and responsiveness.
+
           </p>
 
         </div>
@@ -8463,7 +9103,288 @@
     });
 
     render();
+
+    /*=========================================================
+        Raspberry Pi Methodology Animation
+=========================================================*/
+
+    const pulse = document.getElementById("pulse");
+
+    const delayCard = document.getElementById("delayCard");
+    const timerCard = document.getElementById("timerCard");
+    const interruptCard = document.getElementById("interruptCard");
+
+    const delayVideo = document.getElementById("delayVideo");
+    const timerVideo = document.getElementById("timerVideo");
+    const interruptVideo = document.getElementById("interruptVideo");
+
+    const rootCard = document.querySelector(".root-card");
+
+    const svg = document.querySelector(".tree-svg");
+
+    let currentMethod = -1;
+
+
+
+    /************************************************
+                Helpers
+    ************************************************/
+
+    function dimOthers(active) {
+
+      [delayCard, timerCard, interruptCard].forEach(card => {
+
+        if (card === active) {
+
+          card.classList.remove("dim");
+          card.classList.add("active");
+
+        } else {
+
+          card.classList.remove("active");
+          card.classList.add("dim");
+
+        }
+
+      });
+
+    }
+
+    function restoreCards() {
+
+      [delayCard, timerCard, interruptCard].forEach(card => {
+
+        card.classList.remove("active");
+        card.classList.remove("dim");
+
+      });
+
+    }
+
+    function stopVideos() {
+
+      [delayVideo, timerVideo, interruptVideo].forEach(v => {
+
+        v.pause();
+
+        v.currentTime = 0;
+
+      });
+
+    }
+
+
+
+    function zoomRoot() {
+
+      rootCard.classList.add("active");
+
+    }
+
+    function unzoomRoot() {
+
+      rootCard.classList.remove("active");
+
+    }
+
+
+
+    /************************************************
+                Pulse Animation
+    ************************************************/
+
+    function movePulse(pathID) {
+
+      const path = document.getElementById(pathID);
+
+      const length = path.getTotalLength();
+
+      pulse.style.opacity = 1;
+
+      let start = null;
+
+      function animate(timestamp) {
+
+        if (!start) start = timestamp;
+
+        let progress = (timestamp - start) / 1200;
+
+        if (progress > 1) progress = 1;
+
+        const point = path.getPointAtLength(progress * length);
+
+        pulse.setAttribute("cx", point.x);
+
+        pulse.setAttribute("cy", point.y);
+
+        if (progress < 1) {
+
+          requestAnimationFrame(animate);
+
+        }
+
+      }
+
+      requestAnimationFrame(animate);
+
+    }
+
+
+
+    /************************************************
+            Play One Method
+    ************************************************/
+
+    function activateMethod(card, video, path) {
+
+      stopVideos();
+
+      restoreCards();
+
+      movePulse(path);
+
+      dimOthers(card);
+
+      video.play();
+
+    }
+
+
+
+    /************************************************
+                Sequence
+    ************************************************/
+
+    function playDelay() {
+
+      activateMethod(
+
+        delayCard,
+
+        delayVideo,
+
+        "delayPath"
+
+      );
+
+    }
+
+
+
+    function playTimer() {
+
+      activateMethod(
+
+        timerCard,
+
+        timerVideo,
+
+        "timerPath"
+
+      );
+
+    }
+
+
+
+    function playInterrupt() {
+
+      activateMethod(
+
+        interruptCard,
+
+        interruptVideo,
+
+        "interruptPath"
+
+      );
+
+    }
+
+
+
+    /************************************************
+            Restore after video ends
+    ************************************************/
+
+    delayVideo.onended = () => {
+
+      restoreCards();
+
+      pulse.style.opacity = 0;
+
+    };
+
+    timerVideo.onended = () => {
+
+      restoreCards();
+
+      pulse.style.opacity = 0;
+
+    };
+
+    interruptVideo.onended = () => {
+
+      restoreCards();
+
+      pulse.style.opacity = 0;
+
+    };
+
+
+
+    /************************************************
+            Demo Controller
+    ************************************************/
+
+    function methodologyNext() {
+
+      currentMethod++;
+
+      switch (currentMethod) {
+
+        case 0:
+
+          zoomRoot();
+
+          break;
+
+        case 1:
+
+          unzoomRoot();
+
+          playDelay();
+
+          break;
+
+        case 2:
+
+          playTimer();
+
+          break;
+
+        case 3:
+
+          playInterrupt();
+
+          break;
+
+        default:
+
+          restoreCards();
+
+          stopVideos();
+
+          pulse.style.opacity = 0;
+
+          currentMethod = -1;
+
+      }
+
+    }
+
   </script>
+
 </body>
 
 </html>
