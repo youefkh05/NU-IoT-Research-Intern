@@ -211,10 +211,6 @@
 
       overflow: visible;
 
-      opacity: 0;
-
-      transition: opacity .5s ease;
-
     }
 
 
@@ -271,10 +267,6 @@
       align-items: flex-start;
 
       z-index: 5;
-
-      opacity: 0;
-
-      transition: opacity .5s ease;
 
     }
 
@@ -361,6 +353,55 @@
 
     }
 
+    /*=========================================================
+            Large Demonstration Video
+=========================================================*/
+
+    .demo-video {
+
+      margin: 2rem auto;
+
+      width: min(1050px, 90%);
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+    }
+
+    .demo-video video {
+
+      width: 100%;
+
+      max-height: 58vh;
+
+      border-radius: 20px;
+
+      background: #000;
+
+      border: 2px solid rgba(255, 255, 255, .08);
+
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, .45),
+        0 0 35px rgba(0, 255, 255, .18);
+
+      transition: .4s;
+
+    }
+
+    .demo-video video:hover {
+
+      transform: scale(1.01);
+
+      box-shadow:
+        0 30px 70px rgba(0, 0, 0, .55),
+        0 0 40px rgba(0, 255, 255, .30);
+
+    }
+
+
 
     /*================ ACTIVE CARD =================*/
 
@@ -394,14 +435,6 @@
 
     /*================ ROOT ACTIVE =================*/
 
-    .root-card.visible {
-
-      opacity: 1;
-
-      transform: scale(1);
-
-    }
-
     .root-card.active {
 
       transform: scale(1.25);
@@ -411,20 +444,6 @@
         0 0 35px rgba(0, 255, 255, .35),
 
         0 25px 80px rgba(0, 0, 0, .45);
-
-    }
-
-    .root-card.zoomed {
-
-      transform: translateY(-80px) scale(1.8);
-
-      z-index: 40;
-
-      box-shadow:
-
-        0 25px 80px rgba(0, 0, 0, .55),
-
-        0 0 35px rgba(0, 255, 255, .30);
 
     }
 
@@ -6036,6 +6055,155 @@
       </div>
     </section>
 
+    <!-- ==========================================================
+ Raspberry Pi Task 1 ─ Delay-Based
+=========================================================== -->
+    <section class="slide">
+
+      <div class="slide-inner">
+
+        <span class="kicker">Raspberry Pi Development</span>
+
+        <div class="badge-row" style="margin-bottom:.8rem">
+          <span class="badge fill">Method 1 / 3</span>
+          <span class="badge">Delay-Based Control</span>
+        </div>
+
+        <h2>
+          Delay-Based LED Blinking
+        </h2>
+
+        <p class="lead">
+          The LED is toggled using software delay loops. This approach is straightforward to implement but keeps the CPU
+          occupied during each delay interval.
+        </p>
+
+        <div class="demo-video">
+
+          <video controls autoplay playsinline>
+
+            <source src="../Videos/Task2_LED.mp4" type="video/mp4">
+
+          </video>
+
+        </div>
+
+        <div class="takeaway">
+
+          <span class="lbl">Key Idea</span>
+
+          <p>
+
+            Simple and easy to understand, but inefficient because the processor remains blocked while waiting.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==========================================================
+ Raspberry Pi Task 1 ─ Timer-Based
+=========================================================== -->
+    <section class="slide">
+
+      <div class="slide-inner">
+
+        <span class="kicker">Raspberry Pi Development</span>
+
+        <div class="badge-row" style="margin-bottom:.8rem">
+          <span class="badge fill">Method 2 / 3</span>
+          <span class="badge">Timer-Based Control</span>
+        </div>
+
+        <h2>
+          Hardware Timer Control
+        </h2>
+
+        <p class="lead">
+          Hardware timers generate periodic events independently of the main program, allowing accurate LED blinking
+          while freeing the CPU for other tasks.
+        </p>
+
+        <div class="demo-video">
+
+          <video controls autoplay playsinline>
+
+            <source src="../Videos/Task3_Button.mp4" type="video/mp4">
+
+          </video>
+
+        </div>
+
+        <div class="takeaway">
+
+          <span class="lbl">Key Idea</span>
+
+          <p>
+
+            Hardware timers improve timing precision and reduce unnecessary CPU usage.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+ Raspberry Pi Task 1 ─ Interrupt-Based
+=========================================================== -->
+    <section class="slide">
+
+      <div class="slide-inner">
+
+        <span class="kicker">Raspberry Pi Development</span>
+
+        <div class="badge-row" style="margin-bottom:.8rem">
+          <span class="badge fill">Method 3 / 3</span>
+          <span class="badge">Interrupt-Based Control</span>
+        </div>
+
+        <h2>
+          GPIO Interrupt Handling
+        </h2>
+
+        <p class="lead">
+          Instead of continuously checking the button state, GPIO interrupts allow the Raspberry Pi to react instantly
+          whenever the button is pressed.
+        </p>
+
+        <div class="demo-video">
+
+          <video controls autoplay playsinline>
+
+            <source src="../Videos/Task4_INTR.mp4" type="video/mp4">
+
+          </video>
+
+        </div>
+
+        <div class="takeaway">
+
+          <span class="lbl">Key Idea</span>
+
+          <p>
+
+            Interrupt-driven programming provides immediate response while minimizing processor workload.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
 
     <!-- 4 ─ THE GAP IN PRIOR WORK -->
     <section class="slide" data-pages="2–5">
@@ -9152,8 +9320,6 @@
 
     const svg = document.querySelector(".tree-svg");
 
-    const methodRow = document.querySelector(".method-row");
-
     let currentMethod = -1;
 
 
@@ -9207,35 +9373,15 @@
 
 
 
-    function showRoot() {
+    function zoomRoot() {
 
-      rootCard.classList.add("visible");
-
-      rootCard.classList.remove("zoomed");
-
-      rootCard.classList.remove("active");
-
-    }
-
-    function zoomRootToCenter() {
-
-      rootCard.classList.remove("active");
-
-      rootCard.classList.add("zoomed");
+      rootCard.classList.add("active");
 
     }
 
     function unzoomRoot() {
 
-      rootCard.classList.remove("zoomed");
-
-    }
-
-    function showMethods() {
-
-      svg.style.opacity = 1;
-
-      methodRow.style.opacity = 1;
+      rootCard.classList.remove("active");
 
     }
 
@@ -9397,41 +9543,25 @@
 
         case 0:
 
-          showRoot();
+          zoomRoot();
 
           break;
 
         case 1:
 
-          zoomRootToCenter();
-
-          break;
-
-        case 2:
-
           unzoomRoot();
-
-          break;
-
-        case 3:
-
-          showMethods();
-
-          break;
-
-        case 4:
 
           playDelay();
 
           break;
 
-        case 5:
+        case 2:
 
           playTimer();
 
           break;
 
-        case 6:
+        case 3:
 
           playInterrupt();
 
@@ -9444,10 +9574,6 @@
           stopVideos();
 
           pulse.style.opacity = 0;
-
-          svg.style.opacity = 0;
-
-          methodRow.style.opacity = 0;
 
           currentMethod = -1;
 
