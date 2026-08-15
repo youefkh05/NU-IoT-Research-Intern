@@ -211,6 +211,10 @@
 
       overflow: visible;
 
+      opacity: 0;
+
+      transition: opacity .5s ease;
+
     }
 
 
@@ -267,6 +271,10 @@
       align-items: flex-start;
 
       z-index: 5;
+
+      opacity: 0;
+
+      transition: opacity .5s ease;
 
     }
 
@@ -386,6 +394,14 @@
 
     /*================ ROOT ACTIVE =================*/
 
+    .root-card.visible {
+
+      opacity: 1;
+
+      transform: scale(1);
+
+    }
+
     .root-card.active {
 
       transform: scale(1.25);
@@ -395,6 +411,20 @@
         0 0 35px rgba(0, 255, 255, .35),
 
         0 25px 80px rgba(0, 0, 0, .45);
+
+    }
+
+    .root-card.zoomed {
+
+      transform: translateY(-80px) scale(1.8);
+
+      z-index: 40;
+
+      box-shadow:
+
+        0 25px 80px rgba(0, 0, 0, .55),
+
+        0 0 35px rgba(0, 255, 255, .30);
 
     }
 
@@ -5850,8 +5880,8 @@
     </section>
 
     <!-- ==========================================================
- Raspberry Pi Task 1 ─ Methodology
-=========================================================== -->
+    Raspberry Pi Task 1 ─ Methodology
+    =========================================================== -->
     <section class="slide">
       <div class="slide-inner">
 
@@ -9122,6 +9152,8 @@
 
     const svg = document.querySelector(".tree-svg");
 
+    const methodRow = document.querySelector(".method-row");
+
     let currentMethod = -1;
 
 
@@ -9175,15 +9207,35 @@
 
 
 
-    function zoomRoot() {
+    function showRoot() {
 
-      rootCard.classList.add("active");
+      rootCard.classList.add("visible");
+
+      rootCard.classList.remove("zoomed");
+
+      rootCard.classList.remove("active");
+
+    }
+
+    function zoomRootToCenter() {
+
+      rootCard.classList.remove("active");
+
+      rootCard.classList.add("zoomed");
 
     }
 
     function unzoomRoot() {
 
-      rootCard.classList.remove("active");
+      rootCard.classList.remove("zoomed");
+
+    }
+
+    function showMethods() {
+
+      svg.style.opacity = 1;
+
+      methodRow.style.opacity = 1;
 
     }
 
@@ -9345,25 +9397,41 @@
 
         case 0:
 
-          zoomRoot();
+          showRoot();
 
           break;
 
         case 1:
 
-          unzoomRoot();
-
-          playDelay();
+          zoomRootToCenter();
 
           break;
 
         case 2:
 
-          playTimer();
+          unzoomRoot();
 
           break;
 
         case 3:
+
+          showMethods();
+
+          break;
+
+        case 4:
+
+          playDelay();
+
+          break;
+
+        case 5:
+
+          playTimer();
+
+          break;
+
+        case 6:
 
           playInterrupt();
 
@@ -9376,6 +9444,10 @@
           stopVideos();
 
           pulse.style.opacity = 0;
+
+          svg.style.opacity = 0;
+
+          methodRow.style.opacity = 0;
 
           currentMethod = -1;
 
