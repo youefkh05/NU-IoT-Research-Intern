@@ -145,6 +145,30 @@
       border-radius: 2px;
     }
 
+    .led {
+
+      fill: #222;
+
+      transition: .5s;
+
+    }
+
+    .on .led {
+
+      fill: #ffe44a;
+
+      filter: drop-shadow(0 0 20px #ffd400);
+    }
+
+    .electron {
+
+      offset-path: path("M40 40 L120 40 ...");
+
+      animation: flow 2s linear infinite;
+
+    }
+
+
     h1 {
       font-size: clamp(2rem, 4.6vw, 4rem);
       line-height: 1.04;
@@ -4904,7 +4928,6 @@
   <div class="deck" id="deck">
 
     <!-- 1 ─ TITLE -->
-    <!-- 1 ─ TITLE -->
     <section class="slide title-slide">
       <div class="slide-inner">
 
@@ -4949,12 +4972,6 @@
           </div>
 
           <div class="col">
-            <div class="h">Department</div>
-            <div>Electrical, Electronics & Communication Engineering</div>
-            <div>Cairo University</div>
-          </div>
-
-          <div class="col">
             <div class="h">Research Program</div>
             <div>Nile University</div>
             <div>Summer Research Internship 2026</div>
@@ -4968,99 +4985,387 @@
     <!-- 1b ─ AGENDA -->
     <section class="slide">
       <div class="slide-inner">
+
         <span class="kicker">Agenda</span>
-        <h2>What we'll cover<span class="step-hint">click to reveal ▸</span></h2>
+
+        <h2>
+          What we'll cover
+          <span class="step-hint">click to reveal ▸</span>
+        </h2>
+
         <div class="grid g2 revgrid click-advance" style="margin-top:1.8rem">
+
           <div class="card edge-teal gstep">
-            <h3 class="accent">01 · Literature Review</h3>
-            <p>State-of-the-art simulation acceleration — and the heuristic limit every method shares.</p>
+            <h3 class="accent">01 · Introduction</h3>
+            <p>
+              Overview of the internship, objectives, and the research roadmap.
+            </p>
           </div>
-          <div class="card edge-teal gstep">
-            <h3 class="accent">02 · Methodology I — GAP</h3>
-            <p>A graph neural partitioner: RTL as a graph, GraphSAGE, and multi-graph training at scale.</p>
-          </div>
-          <div class="card edge-violet gstep">
-            <h3 class="violet">03 · Methodology II — RLSF</h3>
-            <p>Partitioning as reinforcement learning, driven by real simulation feedback and a fast surrogate.</p>
-          </div>
-          <div class="card edge-amber gstep">
-            <h3 class="amber">04 · Results</h3>
-            <p>Both methods on 17 industrial RTL designs vs. the production FLPS heuristic.</p>
-          </div>
-          <div class="card edge-green gstep">
-            <h3 class="green">05 · Conclusion & Future Work</h3>
-            <p>What we proved, where learning wins, and the road ahead.</p>
-          </div>
+
           <div class="card edge-blue gstep">
-            <h3 class="blue">Q & A</h3>
-            <p>Questions and discussion.</p>
+            <h3 class="blue">02 · Raspberry Pi Development</h3>
+            <p>
+              Linux, Python programming, GPIO interfacing, sensors, and embedded application development.
+            </p>
           </div>
+
+          <div class="card edge-violet gstep">
+            <h3 class="violet">03 · IoT & RTOS Applications</h3>
+            <p>
+              MQTT communication, cloud dashboards, and real-time embedded systems using the TI CC1352 LaunchPad.
+            </p>
+          </div>
+
+          <div class="card edge-green gstep">
+            <h3 class="green">04 · Results</h3>
+            <p>
+              Demonstrations, project outcomes, and the technical skills acquired throughout the internship.
+            </p>
+          </div>
+
         </div>
+
       </div>
     </section>
 
-    <!-- 2 ─ HOOK / PROBLEM -->
+
+    <!-- 2 ─ INTRODUCTION -->
     <section class="slide" data-pages="2–3">
       <div class="slide-inner">
-        <span class="kicker">The Bottleneck</span>
-        <h2>Chips got 1000× bigger.<br>Simulation didn't keep up.</h2>
-        <p class="lead">Modern SoCs pack <strong>tens of billions of transistors</strong>. But verifying them — running
-          cycle-accurate RTL simulation — has become the slowest step in the entire hardware design flow.</p>
+
+        <span class="kicker">Introduction</span>
+
+        <h2>
+          A Four-Week Journey into
+          <span class="accent">Internet of Things</span>
+        </h2>
+
+        <p class="lead">
+          we spent four weeks working in the
+          <strong>(NISC)</strong>,
+          attending laboratory sessions twice per week to explore the fundamentals of IoT
+        </p>
+
         <div class="stats">
+
           <div class="stat">
-            <div class="v accent">10–100M</div>
-            <div class="k">transistors in a single mid-size block</div>
+            <div class="v accent">4 Weeks</div>
+            <div class="k">Summer research internship</div>
           </div>
+
           <div class="stat">
-            <div class="v coral">~few k</div>
-            <div class="k">cycles per second of throughput</div>
+            <div class="v blue">2 Days / Week</div>
+            <div class="k">Hands-on laboratory sessions</div>
           </div>
+
           <div class="stat">
-            <div class="v amber">hours</div>
-            <div class="k">to simulate seconds of a 1 GHz chip</div>
+            <div class="v amber">3 Tracks</div>
+            <div class="k">Raspberry Pi, IoT & RTOS</div>
           </div>
+
         </div>
-        <div class="takeaway warn">
-          <span class="lbl">Why it matters</span>
-          <p>Slow simulation forces teams to <strong>defer full-chip testing to late stages</strong> — exactly when bugs
-            are most expensive to fix.</p>
+
+        <div class="takeaway">
+          <span class="lbl">Objective</span>
+          <p>
+            Build a practical understanding of modern IoT systems by combining
+            <strong>embedded programming</strong>,
+            <strong>network communication</strong>,
+            <strong>cloud platforms</strong>,
+            and
+            <strong>real-time operating systems.</strong>
+          </p>
         </div>
+
       </div>
     </section>
 
-    <!-- 3 ─ PARALLELISM PROMISE -->
-    <section class="slide" data-pages="2–5">
+
+    <!-- 3 ─ RESEARCH JOURNEY -->
+    <section class="slide" data-pages="3–5">
+
       <div class="slide-inner">
-        <span class="kicker">The Obvious Fix — and its catch</span>
-        <h2>Split the design across <span class="accent">K</span> cores<span class="step-hint">click to reveal ▸</span>
+
+        <span class="kicker">Research Journey</span>
+
+        <h2>
+          Learning Step by Step
+          <span class="step-hint">click to build ▸</span>
         </h2>
-        <p class="lead">In theory, partitioning a design into K pieces that run concurrently gives up to <strong>K×
-            speedup</strong>. In practice, four forces fight back.</p>
-        <div class="grid g4 click-advance">
-          <div class="card edge-coral gstep">
-            <h3>Communication</h3>
-            <p>Signals crossing partition boundaries every cycle.</p>
+
+        <p class="lead">
+          The internship was organized as a progressive learning journey,
+          where every stage built upon the previous one.
+        </p>
+
+        <div class="pipe click-advance">
+
+          <div class="pipe-row">
+
+            <div class="pstage gstep">
+              <div class="pconn"></div>
+              <div class="pnode"><span class="pnum">1</span></div>
+              <div class="ptitle">Introduction</div>
+              <div class="pdesc">
+                Linux Environment<br>
+                Python Basics
+              </div>
+            </div>
+
+            <div class="pstage gstep">
+              <div class="pconn"></div>
+              <div class="pnode"><span class="pnum">2</span></div>
+              <div class="ptitle">Raspberry Pi</div>
+              <div class="pdesc">
+                GPIO<br>
+                Sensors<br>
+                Hardware Interfacing
+              </div>
+            </div>
+
+            <div class="pstage gstep">
+              <div class="pconn"></div>
+              <div class="pnode"><span class="pnum">3</span></div>
+              <div class="ptitle">IoT</div>
+              <div class="pdesc">
+                MQTT<br>
+                Networking<br>
+                Communication
+              </div>
+            </div>
+
+            <div class="pstage gstep">
+              <div class="pconn"></div>
+              <div class="pnode"><span class="pnum">4</span></div>
+              <div class="ptitle">Cloud</div>
+              <div class="pdesc">
+                InfluxDB<br>
+                Grafana Dashboard
+              </div>
+            </div>
+
+            <div class="pstage gstep">
+              <div class="pconn"></div>
+              <div class="pnode"><span class="pnum">5</span></div>
+              <div class="ptitle">RTOS</div>
+              <div class="pdesc">
+                CC1352 LaunchPad<br>
+                Task Scheduling
+              </div>
+            </div>
+
+            <div class="pstage gstep">
+              <div class="pconn"></div>
+              <div class="pnode"><span class="pnum">6</span></div>
+              <div class="ptitle">Integration</div>
+              <div class="pdesc">
+                Complete IoT System
+              </div>
+            </div>
+
           </div>
-          <div class="card edge-amber gstep">
-            <h3>Imbalance</h3>
-            <p>One overloaded partition stalls all the others.</p>
-          </div>
-          <div class="card edge-violet gstep">
-            <h3>Synchronization</h3>
-            <p>Every cycle ends in a barrier — the slowest wins.</p>
-          </div>
-          <div class="card edge-blue gstep">
-            <h3>Concurrency</h3>
-            <p>How much real work actually overlaps in time.</p>
-          </div>
+
         </div>
+
+        <div class="gstep" style="margin-top:2rem">
+
+          <div class="grid g3">
+
+            <div class="card edge-blue">
+              <div class="big blue">Raspberry Pi</div>
+              <p>Embedded Linux, Python and hardware interfacing.</p>
+            </div>
+
+            <div class="card edge-violet">
+              <div class="big violet">IoT</div>
+              <p>MQTT communication, cloud databases and dashboards.</p>
+            </div>
+
+            <div class="card edge-green">
+              <div class="big green">RTOS</div>
+              <p>Real-time embedded software using the TI CC1352 LaunchPad.</p>
+            </div>
+
+          </div>
+
+        </div>
+
         <div class="takeaway gstep">
-          <span class="lbl">Insight</span>
-          <p>The realized speedup is decided almost entirely by <strong>how you cut the design</strong> — i.e. by the
-            partitioning quality.</p>
+
+          <span class="lbl">Outcome</span>
+
+          <p>
+            By the end of the internship, we successfully combined
+            embedded hardware,
+            IoT communication,
+            cloud visualization,
+            and real-time software development
+            into a complete embedded systems workflow.
+          </p>
+
         </div>
+
+      </div>
+
+    </section>
+
+    <!-- Raspberry Pi Task 1 ─ Task Description -->
+    <section class="slide">
+      <div class="slide-inner">
+
+        <span class="kicker">Raspberry Pi Development</span>
+
+        <h2>
+          Task 1 — LED Blink Control using a Push Button
+          <span class="step-hint">click to build ▸</span>
+        </h2>
+
+        <p class="lead">
+          A simple embedded application demonstrating how a Raspberry Pi reads a
+          <strong>digital input</strong> from a push button and controls a
+          <strong>digital output</strong> by turning an LED on and off.
+        </p>
+
+        <div class="cols tight click-advance" style="align-items:center; margin-top:1rem;">
+
+          <!-- Animated Circuit -->
+          <div>
+
+            <svg viewBox="0 0 520 380" class="mp-stage">
+
+              <!-- Battery -->
+              <g class="gstep">
+                <line x1="70" y1="70" x2="70" y2="120" stroke="white" stroke-width="4" />
+                <line x1="82" y1="60" x2="82" y2="130" stroke="white" stroke-width="8" />
+
+                <text x="45" y="45" fill="var(--muted)">Battery</text>
+              </g>
+
+              <!-- Wire -->
+              <g class="gstep">
+                <path d="M82 95 H180" stroke="var(--teal)" stroke-width="4" fill="none" />
+              </g>
+
+              <!-- Switch -->
+              <g class="gstep">
+
+                <circle cx="180" cy="95" r="5" fill="white" />
+                <circle cx="230" cy="95" r="5" fill="white" />
+
+                <!-- closed switch -->
+                <line x1="180" y1="95" x2="230" y2="95" stroke="var(--amber)" stroke-width="5" />
+
+                <text x="165" y="70" fill="var(--muted)">Button</text>
+
+              </g>
+
+              <!-- Wire -->
+              <g class="gstep">
+                <path d="M230 95 H300 V170" stroke="var(--teal)" stroke-width="4" fill="none" />
+              </g>
+
+              <!-- Raspberry Pi -->
+              <g class="gstep">
+
+                <rect x="250" y="170" width="120" height="90" rx="10" fill="#1d2b36" stroke="var(--green)"
+                  stroke-width="3" />
+
+                <text x="310" y="210" text-anchor="middle" fill="white" font-size="18">
+                  Raspberry Pi
+                </text>
+
+                <text x="310" y="235" text-anchor="middle" fill="var(--teal)" font-size="13">
+                  GPIO17
+                </text>
+
+              </g>
+
+              <!-- LED -->
+              <g class="gstep">
+
+                <path d="M370 215 H430" stroke="var(--teal)" stroke-width="4" />
+
+                <circle id="ledGlow" cx="455" cy="215" r="18" fill="#ffe44a">
+
+                  <animate attributeName="opacity" values="0.3;1;0.3" dur="1s" repeatCount="indefinite" />
+
+                </circle>
+
+                <text x="445" y="255" fill="var(--muted)">
+                  LED
+                </text>
+
+              </g>
+
+              <!-- Current -->
+              <g class="gstep">
+
+                <circle r="5" fill="var(--blue)">
+                  <animateMotion dur="2s" repeatCount="indefinite" path="M82 95 H230 V170 H370 H455" />
+                </circle>
+
+                <circle r="5" fill="var(--blue)">
+                  <animateMotion begin=".6s" dur="2s" repeatCount="indefinite" path="M82 95 H230 V170 H370 H455" />
+                </circle>
+
+                <circle r="5" fill="var(--blue)">
+                  <animateMotion begin="1.2s" dur="2s" repeatCount="indefinite" path="M82 95 H230 V170 H370 H455" />
+                </circle>
+
+              </g>
+
+            </svg>
+
+          </div>
+
+          <!-- Right side -->
+          <div>
+
+            <ul class="b">
+
+              <li class="gstep">
+                Read the state of a
+                <strong>push button</strong>
+                using a Raspberry Pi GPIO input.
+              </li>
+
+              <li class="gstep">
+                Control an
+                <strong>LED</strong>
+                through a GPIO output pin.
+              </li>
+
+              <li class="gstep">
+                Implement the control logic using
+                <strong>C</strong>.
+              </li>
+
+              <li class="gstep">
+                Understand the relationship between
+                hardware connections and software execution.
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+        <div class="takeaway gstep">
+
+          <span class="lbl">Key Concept</span>
+
+          <p>
+            A digital input from the push button is continuously monitored by the
+            Raspberry Pi. Based on its state, the program updates the GPIO output,
+            causing the LED to turn <strong>ON</strong> or <strong>OFF</strong>.
+          </p>
+
+        </div>
+
       </div>
     </section>
+
 
     <!-- 4 ─ THE GAP IN PRIOR WORK -->
     <section class="slide" data-pages="2–5">
