@@ -112,6 +112,59 @@
     }
 
     /*=========================================================
+                    Method Icons
+=========================================================*/
+
+    .method-icon {
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      margin: 1rem auto 1.2rem;
+
+      width: 110px;
+
+      height: 110px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(circle,
+          rgba(0, 255, 255, .18),
+          rgba(0, 255, 255, .05));
+
+      border: 2px solid rgba(0, 255, 255, .18);
+
+      box-shadow:
+        0 0 18px rgba(0, 255, 255, .15),
+        inset 0 0 15px rgba(255, 255, 255, .05);
+
+      transition: .35s;
+
+    }
+
+    .method-icon i {
+
+      font-size: 3.2rem;
+
+      color: var(--teal);
+
+    }
+
+    .method-card:hover .method-icon {
+
+      transform: scale(1.08);
+
+      box-shadow:
+        0 0 28px rgba(0, 255, 255, .35),
+        0 0 50px rgba(0, 255, 255, .18);
+
+    }
+
+    /*=========================================================
         Raspberry Pi Methodology Tree
 =========================================================*/
 
@@ -5450,7 +5503,10 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
+
 
 <body>
   <div class="progress" id="progress"></div>
@@ -5966,18 +6022,15 @@
 
               </div>
 
-              <video id="delayVideo" muted preload="metadata">
-
-                <source src="../Videos/Task2_LED.mp4" type="video/mp4">
-
-              </video>
+              <div class="method-icon">
+                <i class="fas fa-hourglass-half"></i>
+              </div>
 
               <div class="method-desc">
-
                 Uses software delay loops to periodically
                 toggle the LED.
-
               </div>
+
 
             </div>
 
@@ -5993,17 +6046,13 @@
 
               </div>
 
-              <video id="timerVideo" muted preload="metadata">
-
-                <source src="../Videos/Task3_Button.mp4" type="video/mp4">
-
-              </video>
+              <div class="method-icon">
+                <i class="fas fa-stopwatch"></i>
+              </div>
 
               <div class="method-desc">
-
                 Uses hardware timers to generate precise
                 blinking intervals.
-
               </div>
 
             </div>
@@ -6020,17 +6069,13 @@
 
               </div>
 
-              <video id="interruptVideo" muted preload="metadata">
-
-                <source src="../Videos/Task4_INTR.mp4" type="video/mp4">
-
-              </video>
+              <div class="method-icon">
+                <i class="fas fa-bolt"></i>
+              </div>
 
               <div class="method-desc">
-
                 Reacts immediately to button presses using
                 GPIO interrupts.
-
               </div>
 
             </div>
