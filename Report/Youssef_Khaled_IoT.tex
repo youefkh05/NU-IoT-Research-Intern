@@ -116,7 +116,7 @@ The overall workflow of the developed Emirp application is illustrated in Figure
 
 
 \begin{table}[ht]
-\caption{Representative execution scenarios of the Emirp number application.}
+\caption{Representative execution scenarios of the Emirp number application.\cite{repo}}
 \label{tab:emirp_examples}
 \centering
 \begin{tabular}{|c|p{0.58\columnwidth}|}
@@ -136,7 +136,7 @@ Table~\ref{tab:emirp_examples} summarizes representative execution scenarios of 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\columnwidth]{../Tasks/Task2/T2_prime_Flow.jpeg}
-\caption{Flowchart of the implemented Emirp number detection algorithm.}
+\caption{Flowchart of the implemented Emirp number detection algorithm.\cite{repo}}
 \label{fig:emirp_flow}
 \end{figure}
 
@@ -161,7 +161,7 @@ While Figure~\ref{fig:prime_examples} presents sample terminal outputs obtained 
 \subfloat[Invalid input.]{
 \includegraphics[width=.47\columnwidth]{../Tasks/Task2/T2_prime_test_erro.jpeg}}
 
-\caption{Terminal outputs demonstrating successful execution and input validation of the Emirp number application.}
+\caption{Terminal outputs demonstrating successful execution and input validation of the Emirp number application.\cite{repo}}
 \label{fig:prime_examples}
 
 \end{figure}
@@ -185,13 +185,111 @@ These implementations demonstrated how different software architectures influenc
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\columnwidth]{../Tasks/Task3/T3_Button.jpeg}
-\caption{GPIO-based LED control implemented on the Raspberry Pi.}
+\caption{GPIO-based LED control implemented on the Raspberry Pi.\cite{videos}}
 \label{fig:led}
 \end{figure}
 
 Example executions of the developed C application are presented in Figure~\ref{fig:prime_examples}, while Figure~\ref{fig:led} illustrates the GPIO-based LED control implemented on the Raspberry Pi.
 
 The Raspberry Pi tasks successfully demonstrated both software development and embedded hardware interfacing. The C programming exercise reinforced fundamental programming concepts, including modular design, dynamic memory management, and algorithm implementation. The GPIO applications provided practical experience in controlling external peripherals, implementing event-driven programming techniques, and comparing different software control methodologies. Figure~\ref{fig:led} illustrates the implemented GPIO-based LED control setup.
+
+
+\subsection{Internet of Things (IoT)}
+
+\subsubsection{Objective}
+
+The objective of this task was to develop a complete Internet of Things (IoT) data acquisition system capable of collecting sensor measurements, transmitting them to cloud platforms, storing them in a time-series database, and visualizing the acquired data in real time. Throughout the internship, two communication approaches were investigated. The initial implementation utilized HTTP requests with the Adafruit IO platform, while the final system adopted the MQTT publish/subscribe protocol together with InfluxDB and Grafana to improve communication efficiency and enable scalable real-time monitoring.
+
+\subsubsection{Work Performed}
+
+The implemented IoT system consisted of multiple software components working together to provide end-to-end data acquisition and visualization. Sensor measurements were collected by the Raspberry Pi using Python, after which the measured values were transmitted to cloud services. During the first implementation, the Raspberry Pi periodically uploaded sensor readings to Adafruit IO using the HTTP protocol. Although functional, this approach required continuous polling and repeated request generation.
+
+The second implementation migrated the communication layer to MQTT. The Raspberry Pi published sensor measurements to an MQTT broker whenever new data became available. The broker forwarded the received messages to InfluxDB for permanent storage, while Grafana retrieved the stored measurements directly from the database to generate live dashboards and historical plots.
+
+Figure~\ref{fig:iot_architecture} illustrates the complete IoT architecture implemented during the internship.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\columnwidth]{../Figures/IoT_Architecture.pdf}
+    \caption{Overall IoT architecture implemented during the internship.\cite{repo}}
+    \label{fig:iot_architecture}
+\end{figure}
+
+\subsubsection{Methodology}
+
+Two communication protocols were implemented and evaluated throughout the internship.
+
+The first implementation employed the HTTP protocol, where the Raspberry Pi continuously transmitted sensor measurements to the cloud using periodic HTTP requests. Since the client must repeatedly request communication regardless of whether new data are available, this approach increases network traffic, processor activity, and power consumption.
+
+The second implementation adopted the MQTT publish/subscribe communication model. Instead of continuously polling the server, the Raspberry Pi publishes sensor values only when new measurements become available. Subscribers automatically receive updates from the MQTT broker whenever new messages are published. Consequently, MQTT significantly reduces unnecessary network traffic while providing lower latency and improved scalability for IoT applications.
+
+
+Table~\ref{tab:httpmqtt} summarizes the characteristics of both communication protocols.
+
+\begin{table}[H]
+\caption{Comparison between HTTP and MQTT communication protocols.}
+\label{tab:httpmqtt}
+\centering
+\begin{tabular}{|p{0.28\columnwidth}|p{0.28\columnwidth}|p{0.28\columnwidth}|}
+\hline
+\textbf{Feature} &
+\textbf{HTTP} &
+\textbf{MQTT} \\ \hline
+
+Communication Model &
+Request/Response &
+Publish/Subscribe \\ \hline
+
+Data Transfer &
+Continuous polling &
+Only when new data are available \\ \hline
+
+Bandwidth Usage &
+Higher &
+Lower \\ \hline
+
+Power Consumption &
+Higher &
+Lower \\ \hline
+
+Scalability &
+Moderate &
+High \\ \hline
+
+Real-Time Updates &
+Limited by polling interval &
+Immediate event-driven updates \\ \hline
+
+IoT Suitability &
+Good &
+Excellent \\ \hline
+
+\end{tabular}
+\end{table}
+
+\subsubsection{Outcomes}
+
+The developed IoT platform successfully demonstrated complete cloud connectivity and real-time monitoring capabilities. Sensor measurements were reliably transmitted from the Raspberry Pi, stored within a time-series database, and visualized through interactive dashboards.
+
+The transition from HTTP to MQTT significantly improved communication efficiency by eliminating continuous polling and reducing unnecessary network traffic. In addition, the integration of InfluxDB and Grafana enabled persistent storage, historical data analysis, and live visualization, providing a scalable architecture suitable for future IoT deployments.
+
+Example dashboards generated during the internship are presented in Figure~\ref{fig:dashboards}.
+
+\begin{figure}[H]
+\centering
+
+\subfloat[Adafruit IO dashboard.]{
+\includegraphics[width=.47\columnwidth]{../Tasks/Task4/T4_Adafruit.jpeg}}
+
+\hfill
+
+\subfloat[Grafana dashboard.]{
+\includegraphics[width=.47\columnwidth]{../Tasks/Task4/T4_Grafana.jpeg}}
+
+\caption{Cloud dashboards used for monitoring sensor measurements.\cite{videos}}
+\label{fig:dashboards}
+
+\end{figure}
 
 \section*{Acknowledgment}
 
@@ -215,6 +313,15 @@ Y. K. Omar,
 ``NU IoT Research Internship Task Demonstrations,''
 Google Drive, 2026.
 Available: \href{https://drive.google.com/drive/folders/1mi1f_lU7xuAddAbGfxgAJMQLgRbdzmwu?usp=sharing}{Google Drive Link}
+
+\bibitem{ada}
+Adafruit IO Dashboard, Available:
+\url{https://io.adafruit.com/youefkh05/dashboards/nu-iot-research}
+
+\bibitem{grafana}
+Grafana Public Dashboard, Available:
+\url{https://broadpantry517.grafana.net/public-dashboards/eeee64a324cc4a5ea9bd651244ab6319}
+
 
 \end{thebibliography}
 
