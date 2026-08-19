@@ -210,10 +210,24 @@ Figure~\ref{fig:iot_architecture} illustrates the complete IoT architecture impl
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\columnwidth]{../Figures/IoT_Architecture.pdf}
+    \includegraphics[width=0.95\columnwidth]{../Tasks/Task11/T11_Flow.png}
     \caption{Overall IoT architecture implemented during the internship.\cite{repo}}
     \label{fig:iot_architecture}
 \end{figure}
+
+\subsubsection{Database Integration}
+
+To enable persistent storage and historical analysis of sensor measurements, the received MQTT messages were stored in an InfluxDB time-series database. Unlike conventional relational databases, InfluxDB is specifically designed for timestamped data, making it well suited for Internet of Things (IoT) applications where measurements are continuously generated over time. Each sensor reading was recorded together with its corresponding timestamp, allowing efficient querying, filtering, and long-term storage of collected data. This database served as the primary data source for the Grafana visualization platform, enabling both live monitoring and analysis of previously recorded measurements.
+
+Figure~\ref{fig:influxdb} shows a sample of the stored measurements within the InfluxDB database.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\columnwidth]{../Tasks/Task6/T6_DataBase.jpeg}
+    \caption{Example of sensor measurements stored in the InfluxDB time-series database.\cite{repo}}
+    \label{fig:influxdb}
+\end{figure}
+
 
 \subsubsection{Methodology}
 
@@ -269,7 +283,16 @@ Excellent \\ \hline
 
 \subsubsection{Outcomes}
 
-The developed IoT platform successfully demonstrated complete cloud connectivity and real-time monitoring capabilities. Sensor measurements were reliably transmitted from the Raspberry Pi, stored within a time-series database, and visualized through interactive dashboards.
+The developed IoT platform successfully demonstrated complete cloud connectivity and real-time monitoring capabilities. Sensor measurements were reliably transmitted from the Raspberry Pi to the MQTT broker, where published messages were successfully received and forwarded to the remaining components of the system. The acquired data were subsequently stored within an InfluxDB time-series database and visualized through interactive dashboards.
+
+Figure~\ref{fig:mqtt_broker} shows the MQTT broker successfully receiving and forwarding the published sensor measurements.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\columnwidth]{../Tasks/Task11/T11_MQTT_Brocker.jpeg}
+    \caption{MQTT broker receiving published sensor measurements.\cite{videos}}
+    \label{fig:mqtt_broker}
+\end{figure}
 
 The transition from HTTP to MQTT significantly improved communication efficiency by eliminating continuous polling and reducing unnecessary network traffic. In addition, the integration of InfluxDB and Grafana enabled persistent storage, historical data analysis, and live visualization, providing a scalable architecture suitable for future IoT deployments.
 
@@ -279,17 +302,86 @@ Example dashboards generated during the internship are presented in Figure~\ref{
 \centering
 
 \subfloat[Adafruit IO dashboard.]{
-\includegraphics[width=.47\columnwidth]{../Tasks/Task4/T4_Adafruit.jpeg}}
+\includegraphics[width=.47\columnwidth]{../Tasks/Task7/T7_ADAFruit.jpeg}}
 
 \hfill
 
 \subfloat[Grafana dashboard.]{
-\includegraphics[width=.47\columnwidth]{../Tasks/Task4/T4_Grafana.jpeg}}
+\includegraphics[width=.47\columnwidth]{../Tasks/Task11/T11_Grafana.jpeg}}
 
-\caption{Cloud dashboards used for monitoring sensor measurements.\cite{videos}}
+\caption{Cloud dashboards used for monitoring sensor measurements.\cite{ada, grafana}}
 \label{fig:dashboards}
 
 \end{figure}
+
+
+\subsection{Real-Time Operating System (RTOS)}
+
+\subsubsection{Objective}
+
+The objective of this task was to gain practical experience in real-time embedded software development by implementing concurrent applications using a Real-Time Operating System (RTOS). The work focused on understanding task management, scheduling mechanisms, inter-task execution, and communication between embedded devices while developing a multitasking application on a wireless microcontroller platform.
+
+\subsubsection{Work Performed}
+
+The RTOS application was organized around a central kernel responsible for scheduling multiple independent tasks. Each task executed concurrently while sharing the processor according to the scheduling policy provided by the operating system. This architecture allowed different application functionalities to execute independently without blocking one another.
+
+The implemented software consisted of several concurrent tasks responsible for hardware control, wireless communication, and external device interaction. Synchronization between these tasks was managed by the RTOS scheduler, ensuring deterministic execution and efficient processor utilization.
+
+Figure~\ref{fig:rtos_architecture} illustrates the overall RTOS architecture implemented during the internship.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\columnwidth]{../Tasks/Task14/T14_Flow.png}
+    \caption{RTOS architecture showing the kernel managing multiple concurrent tasks.\cite{repo}}
+    \label{fig:rtos_architecture}
+\end{figure}
+
+\subsubsection{Implemented Modules}
+
+Four independent application tasks were developed during this stage:
+
+\begin{itemize}
+    \item \textbf{LED Task}: Periodically controlled the onboard LED to demonstrate periodic task scheduling.
+    
+    \item \textbf{Bluetooth Task}: Implemented Bluetooth communication for wireless data exchange.
+
+    \item \textbf{Zigbee Task}: Established Zigbee communication for low-power wireless networking.
+
+    \item \textbf{UART-over-USB Task}: Enabled serial communication between the RTOS device and the Raspberry Pi for system integration.
+\end{itemize}
+
+Each task executed independently under the supervision of the RTOS kernel, demonstrating concurrent execution without interfering with the operation of other tasks.
+
+\subsubsection{Outcomes}
+
+The RTOS implementation successfully demonstrated multitasking capabilities through the concurrent execution of independent application tasks. The scheduler efficiently managed processor time among the implemented tasks while maintaining responsive system behavior.
+
+Successful Bluetooth and Zigbee communication verified the operation of multiple wireless interfaces under the RTOS environment. In addition, UART-over-USB communication established reliable integration between the RTOS microcontroller and the Raspberry Pi, allowing both platforms to exchange data as part of a unified embedded system.
+
+Representative experimental results obtained during the implementation are presented in Figure~\ref{fig:rtos_results}.
+
+\begin{figure}[H]
+\centering
+
+\subfloat[LED task.]{
+\includegraphics[width=.47\columnwidth]{../Tasks/Task12/T12_Out.jpeg}}
+\hfill
+\subfloat[Bluetooth communication.]{
+\includegraphics[width=.47\columnwidth]{../Tasks/Task13/T13_Out.jpeg}}
+
+\vspace{0.4em}
+
+\subfloat[Zigbee communication.]{
+\includegraphics[width=.47\columnwidth]{../Tasks/Task14/T14_Out.jpeg}}
+\hfill
+\subfloat[Raspberry Pi integration via UART-over-USB.]{
+\includegraphics[width=.47\columnwidth]{../Tasks/Task15/T15_Out.jpeg}}
+
+\caption{Experimental results obtained from the RTOS implementation.\cite{videos}}
+\label{fig:rtos_results}
+
+\end{figure}
+
 
 \section*{Acknowledgment}
 
