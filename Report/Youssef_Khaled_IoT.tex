@@ -382,8 +382,27 @@ Representative experimental results obtained during the implementation are prese
 
 \end{figure}
 
+\section{Summary of Work Accomplished \& Outcomes}
 
-\section*{Acknowledgment}
+The IoT Summer Research Internship provided a progressive learning experience that combined embedded Linux, Internet of Things (IoT), and real-time embedded systems into a unified practical project. Beginning with software development on the Raspberry Pi, the internship gradually expanded toward cloud-based IoT communication and concluded with the implementation of real-time applications using an RTOS-enabled wireless microcontroller.
+
+The work began with developing software applications under the Embedded Linux environment using the Raspberry Pi. Fundamental programming concepts were reinforced through C programming exercises, followed by Python-based GPIO interfacing to control LEDs and read push-button inputs using different software approaches, including delay-based, timer-based, and interrupt-driven techniques.
+
+Building upon this foundation, the developed embedded applications were connected to cloud services to form a complete IoT monitoring platform. Sensor measurements were transmitted using both HTTP and MQTT communication protocols, allowing their performance to be evaluated and compared. The collected data were then stored in an InfluxDB time-series database and visualized through Grafana dashboards, enabling live monitoring and historical data analysis.
+
+The final stage focused on real-time embedded software development using an RTOS. Multiple concurrent tasks were implemented, including LED control, Bluetooth communication, Zigbee communication, and UART-over-USB communication with the Raspberry Pi. The RTOS scheduler successfully coordinated these independent tasks, demonstrating reliable multitasking and efficient processor utilization.
+
+Overall, the internship resulted in a complete end-to-end embedded IoT system capable of acquiring sensor measurements, transmitting them through lightweight communication protocols, storing them within a scalable database, visualizing them in real time, and integrating embedded Linux with an RTOS-based microcontroller platform. Figure~\ref{fig:internship_workflow} summarizes the overall progression of the internship activities.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\columnwidth]{../Tasks/Summary.png}
+    \caption{Progressive workflow of the internship, illustrating the transition from Embedded Linux development to IoT communication, cloud services, RTOS development, and complete system integration.\cite{repo}}
+    \label{fig:internship_workflow}
+\end{figure}
+
+
+\section{Acknowledgment}
 
 The author would like to express sincere gratitude to the Nile University Research Office for offering the opportunity to participate in the 2026 IoT Summer Research Internship Program.
 
