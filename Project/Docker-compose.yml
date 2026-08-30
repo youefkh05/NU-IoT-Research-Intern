@@ -1,0 +1,59 @@
+services:
+  # ── InfluxDB 3 Core (time-series database) ───────────────
+  influxdb3:
+    image: influxdb:3.11-core
+    container_name: influxdb3
+    network_mode: "host"
+    volumes:
+      - influxdb3-data:/var/lib/influxdb3
+    command:
+      - serve
+      - --node-id=local01
+      - --object-store=file
+      - --data-dir=/var/lib/influxdb3
+      - --http-bind=0.0.0.0:8181
+      - --without-auth
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8181/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # ── InfluxDB 3 Explorer (admin UI) ─────────────────────
+  explorer:
+    image: influxdata/influxdb3-ui
+    container_name: influxdb3-explorer
+    ports:
+      - "8000:8080"
+    environment:
+      - INFLUX_HOST=http://host.docker.internal:8181
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command:
+      - --api-url=http://host.docker.internal:8181
+    depends_on:
+      influxdb3:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ── Grafana (monitoring dashboards) ─────────────────────
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    network_mode: "host"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+    depends_on:
+      influxdb3:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  influxdb3-data:
+  grafana-data:
